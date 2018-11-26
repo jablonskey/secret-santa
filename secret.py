@@ -5,18 +5,17 @@ from email.mime.text import MIMEText
 import random
 
 
-def do_the_draw(list):
-    drawn = {"Jola": "Waldek",
-             "Babcia": "Jola"}
+def draw(draw_participants_list):
+    drawn_dict = {"Babcia": "Waldek"}
 
-    for person in list:
-        if person not in drawn.keys():
-            draw = person
-            while (draw == person or draw in drawn.values()):
-                draw = random.choice(list)
-            drawn[person] = draw
+    for participant in draw_participants_list:
+        if participant not in drawn_dict.keys():
+            drawn_person = participant
+            while (drawn_person == participant or drawn_person in drawn_dict.values()):
+                drawn_person = random.choice(draw_participants_list)
+            drawn_dict[participant] = drawn_person
 
-    return drawn
+    return drawn_dict
 
 
 def send_email(person, email, draw):
@@ -42,10 +41,9 @@ def send_email(person, email, draw):
 
 
 def main():
-    ppl = ['Jola', 'Waldek', 'Babcia', 'Kasia J', 'Kinga', 'Andrzej', 'Magda', 'Kasia P', 'Dorota', 'Arek', 'Łukasz']
+    people = ['Waldek', 'Babcia', 'Kasia J', 'Kinga', 'Andrzej', 'Magda', 'Kasia P', 'Dorota', 'Arek', 'Łukasz']
 
-    ppl_emails = {'Jola': 'jablonskey@mail.com',
-                  'Waldek': 'jablonskey@mail.com',
+    people_with_emails = {'Waldek': 'jablonskey@mail.com',
                   'Babcia': 'jablonskey@mail.com',
                   'Kasia J': 'jablonskey@mail.com',
                   'Kinga': 'jablonskey@mail.com',
@@ -56,13 +54,13 @@ def main():
                   'Arek': 'jablonskey@mail.com',
                   'Łukasz': 'jablonskey@mail.com'}
 
-    draws = do_the_draw(ppl)
+    draws = draw(people)
 
     for person in draws.keys():
-        # print("%s draws %s and message sent to %s" % (person, draws[person], ppl_emails.get(person)))
-        print("Email sent to %s to %s" % (person, ppl_emails.get(person)))
-        send_email(person, ppl_emails.get(person), draws[person])
-        time.sleep(2)
+        print("%s draws %s and message sent to %s" % (person, draws[person], people_with_emails.get(person)))
+        # print("Email sent to %s to %s" % (person, people_with_emails.get(person)))
+        # send_email(person, people_with_emails.get(person), draws[person])
+        time.sleep(1)
 
 
 main()
