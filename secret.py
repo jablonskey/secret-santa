@@ -50,7 +50,7 @@ def main():
                   'Kasia J': 'jablonskey@mail.com',
                   'Kinga': 'jablonskey@mail.com',
                   'Andrzej': 'jablonskey@mail.com',
-                  'Magda': 'no.rehearsall@mail.com',
+                  'Magda': 'no.rehearsall@gmail.com',
                   'Kasia P': 'jablonskey@mail.com',
                   'Dorota': 'jablonskey@mail.com',
                   'Arek': 'jablonskey@mail.com',
@@ -59,7 +59,8 @@ def main():
     draws = do_the_draw(ppl)
 
     for person in draws.keys():
-        print("%s draws %s and message sent to %s" % (person, draws[person], ppl_emails.get(person)))
+        # print("%s draws %s and message sent to %s" % (person, draws[person], ppl_emails.get(person)))
+        print("Email sent to %s to %s" % (person, ppl_emails.get(person)))
         send_email(person, ppl_emails.get(person), draws[person])
         time.sleep(2)
 
